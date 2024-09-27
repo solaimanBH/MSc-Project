@@ -1,0 +1,59 @@
+@import '../../styles/partials/colors';
+@import '../../styles/partials/mixins';
+
+.center {
+  width: 100vw;
+  min-height: 80vh;
+  @include flexCenter();
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonIcon {
+  margin-right: 8px;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+  margin-bottom: 20px;
+}
+
+.link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: $primary; // Use Bootstrap's primary color
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+    color: darken($primary, 10%); // Darken the primary color on hover
+  }
+}

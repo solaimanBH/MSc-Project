@@ -1,0 +1,1 @@
+export const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://0.0.0.0:5000/api'
