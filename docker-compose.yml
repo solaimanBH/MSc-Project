@@ -1,0 +1,50 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    environment:
+      - USE_PNPM=${USE_PNPM}
+      - MONGO_URI=mongodb://mongodb:27017/charity-db
+      - JWT_SECRET=mysupersecret
+      - STRIPE_SECRET_KEY=sk_test_51PwDm6P9NTUMPUUduLEr8fzy1lf2xTB4l7X9sOXSAcCwUDrg6bA2rcCnsKPPsuKkrALZU9iKwADZxDMewo2K5K4z00Izu8JoGe
+    networks:
+      - charity_project
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - USE_PNPM=${USE_PNPM}
+      - VITE_API_BASE=http://localhost:5000/api
+    networks:
+      - charity_project
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - charity_project
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  charity_project:
+    driver: bridge
